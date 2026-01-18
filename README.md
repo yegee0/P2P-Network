@@ -22,3 +22,24 @@ To run this project, you need the following dependencies. The required JAR files
   - `jna-platform-5.8.0.jar`
 
 > **Note:** These libraries are essential for the application to interface with the VLC media player installed inside the Docker container.
+### 3. Build the JAR (If not present)
+If `P2PVideoApp.jar` is not in the root directory:
+1. Export the project as a **Runnable JAR** from Eclipse or IntelliJ.
+2. Name it `P2PVideoApp.jar`.
+3. Place it in the root folder (next to `Dockerfile`).
+
+### X Server Configuration (Required for Windows)
+Since the app has a GUI running inside Docker, you need an X Server to see it.
+
+1. Install [VcXsrv](https://sourceforge.net/projects/vcxsrv/).
+2. Run **XLaunch** with these settings:
+   - **Display number:** `0`
+   - **Extra settings:** Check **"Disable access control"** (Crucial step!).
+3. The `docker-compose.yml` is already configured to use `DISPLAY=host.docker.internal:0.0`.
+
+## How to Run
+
+Open a terminal in the project folder and run:
+
+```bash
+docker-compose up --build
